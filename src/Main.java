@@ -6,8 +6,8 @@ public class Main {
         debtCollector.addDebtor("Lucas", 50);
         debtCollector.addDebtor("Martijn", 113);
         debtCollector.addDebtor("David", 0);
-        debtCollector.addDebtor("Miu", 200); // haven't said
-        debtCollector.addDebtor("Kohei", 200); // haven't said
+        debtCollector.addDebtor("Miu", 119.95);
+        debtCollector.addDebtor("Kohei", 119.95);
         debtCollector.solve();
         System.out.println(debtCollector);
     }
