@@ -65,9 +65,9 @@ public class DebtCollector {
 
     @Override
     public String toString() {
-        StringBuilder ans = new StringBuilder("The total paid is ").append(totalBalance)
+        StringBuilder ans = new StringBuilder("The total spent is ").append(totalBalance)
                 .append("\n").append("There are ").append(debtors.size()).append(" people")
-                .append("\n").append("Each must pay ").append(totalBalance / debtors.size());
+                .append("\n").append("Each should spend ").append(totalBalance / debtors.size());
 
         return debtors.values().stream().reduce(ans.append("\n"), StringBuilder::append, StringBuilder::append).toString();
     }
@@ -110,19 +110,19 @@ public class DebtCollector {
         @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
-            builder.append(name).append(", paid: ").append(paid);
+            builder.append(name).append(", spent: ").append(paid);
             if (owes() > 0) {
                 builder.append(", owes: ").append(owes()).append("\n");
             } else {
                 builder.append(", is owed: ").append(-owes()).append("\n");
             }
             if (!outPayments.isEmpty()) {
-                builder.append("Must pay:\n");
+                builder.append("Pays:\n");
                 builder.append(outPayments.entrySet().stream().reduce(new StringBuilder(), (a, b) -> a.append(b.getValue()).append(" to ").append(b.getKey().name).append("\n"), StringBuilder::append)).append("\n");
             }
             if (!inPayments.isEmpty()) {
-                builder.append("Is paid:\n");
-                builder.append(inPayments.entrySet().stream().reduce(new StringBuilder(), (a, b) -> a.append(b.getValue()).append(" by ").append(b.getKey().name).append("\n"), StringBuilder::append)).append("\n");
+                builder.append("Receives:\n");
+                builder.append(inPayments.entrySet().stream().reduce(new StringBuilder(), (a, b) -> a.append(b.getValue()).append(" from ").append(b.getKey().name).append("\n"), StringBuilder::append)).append("\n");
             }
             return builder.toString();
         }
